@@ -1,8 +1,10 @@
 package com.luots.AIDaTi.model.dto.post;
 
 import com.luots.AIDaTi.common.PageRequest;
+
 import java.io.Serializable;
 import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

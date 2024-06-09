@@ -1,7 +1,9 @@
 package com.luots.AIDaTi.model.dto.user;
 
 import com.luots.AIDaTi.common.PageRequest;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

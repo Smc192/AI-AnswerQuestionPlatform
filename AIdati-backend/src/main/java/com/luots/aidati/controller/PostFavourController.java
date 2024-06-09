@@ -1,27 +1,28 @@
 package com.luots.AIDaTi.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.luots.AIDaTi.common.BaseResponse;
+import com.luots.AIDaTi.common.ErrorCode;
+import com.luots.AIDaTi.common.ResultUtils;
+import com.luots.AIDaTi.exception.BusinessException;
+import com.luots.AIDaTi.exception.ThrowUtils;
 import com.luots.AIDaTi.model.dto.post.PostQueryRequest;
 import com.luots.AIDaTi.model.dto.postfavour.PostFavourAddRequest;
 import com.luots.AIDaTi.model.dto.postfavour.PostFavourQueryRequest;
 import com.luots.AIDaTi.model.entity.Post;
 import com.luots.AIDaTi.model.entity.User;
 import com.luots.AIDaTi.model.vo.PostVO;
-import com.luots.AIDaTi.common.BaseResponse;
-import com.luots.AIDaTi.common.ErrorCode;
-import com.luots.AIDaTi.common.ResultUtils;
-import com.luots.AIDaTi.exception.BusinessException;
-import com.luots.AIDaTi.exception.ThrowUtils;
 import com.luots.AIDaTi.service.PostFavourService;
 import com.luots.AIDaTi.service.PostService;
 import com.luots.AIDaTi.service.UserService;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 帖子收藏接口
@@ -52,7 +53,7 @@ public class PostFavourController {
      */
     @PostMapping("/")
     public BaseResponse<Integer> doPostFavour(@RequestBody PostFavourAddRequest postFavourAddRequest,
-            HttpServletRequest request) {
+                                              HttpServletRequest request) {
         if (postFavourAddRequest == null || postFavourAddRequest.getPostId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -93,7 +94,7 @@ public class PostFavourController {
      */
     @PostMapping("/list/page")
     public BaseResponse<Page<PostVO>> listFavourPostByPage(@RequestBody PostFavourQueryRequest postFavourQueryRequest,
-            HttpServletRequest request) {
+                                                           HttpServletRequest request) {
         if (postFavourQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }

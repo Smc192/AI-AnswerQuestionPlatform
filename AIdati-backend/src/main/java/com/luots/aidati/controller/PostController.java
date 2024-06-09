@@ -3,6 +3,12 @@ package com.luots.AIDaTi.controller;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luots.AIDaTi.annotation.AuthCheck;
+import com.luots.AIDaTi.common.BaseResponse;
+import com.luots.AIDaTi.common.DeleteRequest;
+import com.luots.AIDaTi.common.ErrorCode;
+import com.luots.AIDaTi.common.ResultUtils;
+import com.luots.AIDaTi.constant.UserConstant;
+import com.luots.AIDaTi.exception.BusinessException;
 import com.luots.AIDaTi.exception.ThrowUtils;
 import com.luots.AIDaTi.model.dto.post.PostAddRequest;
 import com.luots.AIDaTi.model.dto.post.PostEditRequest;
@@ -11,24 +17,15 @@ import com.luots.AIDaTi.model.dto.post.PostUpdateRequest;
 import com.luots.AIDaTi.model.entity.Post;
 import com.luots.AIDaTi.model.entity.User;
 import com.luots.AIDaTi.model.vo.PostVO;
-import com.luots.AIDaTi.common.BaseResponse;
-import com.luots.AIDaTi.common.DeleteRequest;
-import com.luots.AIDaTi.common.ErrorCode;
-import com.luots.AIDaTi.common.ResultUtils;
-import com.luots.AIDaTi.constant.UserConstant;
-import com.luots.AIDaTi.exception.BusinessException;
 import com.luots.AIDaTi.service.PostService;
 import com.luots.AIDaTi.service.UserService;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 帖子接口
@@ -174,7 +171,7 @@ public class PostController {
      */
     @PostMapping("/list/page/vo")
     public BaseResponse<Page<PostVO>> listPostVOByPage(@RequestBody PostQueryRequest postQueryRequest,
-            HttpServletRequest request) {
+                                                       HttpServletRequest request) {
         long current = postQueryRequest.getCurrent();
         long size = postQueryRequest.getPageSize();
         // 限制爬虫
@@ -193,7 +190,7 @@ public class PostController {
      */
     @PostMapping("/my/list/page/vo")
     public BaseResponse<Page<PostVO>> listMyPostVOByPage(@RequestBody PostQueryRequest postQueryRequest,
-            HttpServletRequest request) {
+                                                         HttpServletRequest request) {
         if (postQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -209,7 +206,6 @@ public class PostController {
     }
 
     // endregion
-
 
 
     /**

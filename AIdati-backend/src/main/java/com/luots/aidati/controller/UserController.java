@@ -1,9 +1,6 @@
 package com.luots.AIDaTi.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.luots.AIDaTi.model.entity.User;
-import com.luots.AIDaTi.model.vo.LoginUserVO;
-import com.luots.AIDaTi.model.vo.UserVO;
 import com.luots.AIDaTi.annotation.AuthCheck;
 import com.luots.AIDaTi.common.BaseResponse;
 import com.luots.AIDaTi.common.DeleteRequest;
@@ -12,29 +9,20 @@ import com.luots.AIDaTi.common.ResultUtils;
 import com.luots.AIDaTi.constant.UserConstant;
 import com.luots.AIDaTi.exception.BusinessException;
 import com.luots.AIDaTi.exception.ThrowUtils;
-import com.luots.AIDaTi.model.dto.user.UserAddRequest;
-import com.luots.AIDaTi.model.dto.user.UserLoginRequest;
-import com.luots.AIDaTi.model.dto.user.UserQueryRequest;
-import com.luots.AIDaTi.model.dto.user.UserRegisterRequest;
-import com.luots.AIDaTi.model.dto.user.UserUpdateMyRequest;
-import com.luots.AIDaTi.model.dto.user.UserUpdateRequest;
+import com.luots.AIDaTi.model.dto.user.*;
+import com.luots.AIDaTi.model.entity.User;
+import com.luots.AIDaTi.model.vo.LoginUserVO;
+import com.luots.AIDaTi.model.vo.UserVO;
 import com.luots.AIDaTi.service.UserService;
-
-import java.util.List;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import static com.luots.AIDaTi.service.impl.UserServiceImpl.SALT;
 
@@ -51,7 +39,6 @@ public class UserController {
 
     @Resource
     private UserService userService;
-
 
 
     // region 登录相关
@@ -97,7 +84,6 @@ public class UserController {
         LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
         return ResultUtils.success(loginUserVO);
     }
-
 
 
     /**
@@ -182,7 +168,7 @@ public class UserController {
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updateUser(@RequestBody UserUpdateRequest userUpdateRequest,
-            HttpServletRequest request) {
+                                            HttpServletRequest request) {
         if (userUpdateRequest == null || userUpdateRequest.getId() == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -235,7 +221,7 @@ public class UserController {
     @PostMapping("/list/page")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Page<User>> listUserByPage(@RequestBody UserQueryRequest userQueryRequest,
-            HttpServletRequest request) {
+                                                   HttpServletRequest request) {
         long current = userQueryRequest.getCurrent();
         long size = userQueryRequest.getPageSize();
         Page<User> userPage = userService.page(new Page<>(current, size),
@@ -252,7 +238,7 @@ public class UserController {
      */
     @PostMapping("/list/page/vo")
     public BaseResponse<Page<UserVO>> listUserVOByPage(@RequestBody UserQueryRequest userQueryRequest,
-            HttpServletRequest request) {
+                                                       HttpServletRequest request) {
         if (userQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -279,7 +265,7 @@ public class UserController {
      */
     @PostMapping("/update/my")
     public BaseResponse<Boolean> updateMyUser(@RequestBody UserUpdateMyRequest userUpdateMyRequest,
-            HttpServletRequest request) {
+                                              HttpServletRequest request) {
         if (userUpdateMyRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }

@@ -1,6 +1,7 @@
 package com.luots.AIDaTi.model.dto.user;
 
 import java.io.Serializable;
+
 import lombok.Data;
 
 /**

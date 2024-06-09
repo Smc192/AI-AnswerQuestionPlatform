@@ -20,6 +20,7 @@ import com.luots.AIDaTi.mapper.PostFavourMapper;
 import com.luots.AIDaTi.mapper.PostMapper;
 import com.luots.AIDaTi.mapper.PostThumbMapper;
 import com.luots.AIDaTi.utils.SqlUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import lombok.extern.slf4j.Slf4j;
 import cn.hutool.core.collection.CollUtil;
 import org.apache.commons.lang3.ObjectUtils;
@@ -53,7 +55,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
 
     @Resource
     private PostFavourMapper postFavourMapper;
-
 
 
     @Override
@@ -116,7 +117,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 sortField);
         return queryWrapper;
     }
-
 
 
     @Override

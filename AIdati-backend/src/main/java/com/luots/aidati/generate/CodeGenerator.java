@@ -30,9 +30,9 @@ public class CodeGenerator {
     public static void main(String[] args) throws TemplateException, IOException {
         // 指定生成参数
         String packageName = "com.luots.AIDaTi";
-        String dataName = "用户评论";
-        String dataKey = "userComment";
-        String upperDataKey = "UserComment";
+        String dataName = "用户答案";
+        String dataKey = "userAnswer";
+        String upperDataKey = "UserAnswer";
 
         // 封装生成参数
         Map<String, Object> dataModel = new HashMap<>();
@@ -86,6 +86,7 @@ public class CodeGenerator {
         inputPath = projectPath + File.separator + "src/main/resources/templates/model/TemplateVO.java.ftl";
         outputPath = String.format("%s/generator/model/vo/%sVO.java", projectPath, upperDataKey);
         doGenerate(inputPath, outputPath, dataModel);
+        System.out.println(234);
         System.out.println("生成 VO 成功，文件路径：" + outputPath);
     }
 

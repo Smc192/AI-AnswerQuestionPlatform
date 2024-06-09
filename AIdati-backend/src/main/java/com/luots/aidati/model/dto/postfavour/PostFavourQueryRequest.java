@@ -2,7 +2,9 @@ package com.luots.AIDaTi.model.dto.postfavour;
 
 import com.luots.AIDaTi.common.PageRequest;
 import com.luots.AIDaTi.model.dto.post.PostQueryRequest;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

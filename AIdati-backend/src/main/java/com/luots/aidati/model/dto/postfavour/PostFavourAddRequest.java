@@ -1,6 +1,7 @@
 package com.luots.AIDaTi.model.dto.postfavour;
 
 import java.io.Serializable;
+
 import lombok.Data;
 
 /**

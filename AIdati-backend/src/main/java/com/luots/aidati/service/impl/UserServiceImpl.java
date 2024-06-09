@@ -16,10 +16,12 @@ import com.luots.AIDaTi.exception.BusinessException;
 import com.luots.AIDaTi.mapper.UserMapper;
 import com.luots.AIDaTi.service.UserService;
 import com.luots.AIDaTi.utils.SqlUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringUtils;
@@ -108,7 +110,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         request.getSession().setAttribute(USER_LOGIN_STATE, user);
         return this.getLoginUserVO(user);
     }
-
 
 
     /**

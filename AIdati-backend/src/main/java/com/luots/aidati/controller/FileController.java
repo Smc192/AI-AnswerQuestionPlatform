@@ -1,20 +1,16 @@
 package com.luots.AIDaTi.controller;
 
 import cn.hutool.core.io.FileUtil;
-import com.luots.AIDaTi.model.dto.file.UploadFileRequest;
-import com.luots.AIDaTi.model.entity.User;
-import com.luots.AIDaTi.model.enums.FileUploadBizEnum;
 import com.luots.AIDaTi.common.BaseResponse;
 import com.luots.AIDaTi.common.ErrorCode;
 import com.luots.AIDaTi.common.ResultUtils;
 import com.luots.AIDaTi.constant.FileConstant;
 import com.luots.AIDaTi.exception.BusinessException;
 import com.luots.AIDaTi.manager.CosManager;
+import com.luots.AIDaTi.model.dto.file.UploadFileRequest;
+import com.luots.AIDaTi.model.entity.User;
+import com.luots.AIDaTi.model.enums.FileUploadBizEnum;
 import com.luots.AIDaTi.service.UserService;
-import java.io.File;
-import java.util.Arrays;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.Arrays;
 
 /**
  * 文件接口

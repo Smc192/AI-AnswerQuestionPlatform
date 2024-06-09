@@ -4,8 +4,10 @@ import com.qcloud.cos.COSClient;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.luots.AIDaTi.config.CosClientConfig;
+
 import java.io.File;
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,7 +28,7 @@ public class CosManager {
     /**
      * 上传对象
      *
-     * @param key 唯一键
+     * @param key           唯一键
      * @param localFilePath 本地文件路径
      * @return
      */
@@ -39,7 +41,7 @@ public class CosManager {
     /**
      * 上传对象
      *
-     * @param key 唯一键
+     * @param key  唯一键
      * @param file 文件
      * @return
      */

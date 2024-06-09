@@ -1,6 +1,7 @@
 package com.luots.AIDaTi.common;
 
 import java.io.Serializable;
+
 import lombok.Data;
 
 /**
