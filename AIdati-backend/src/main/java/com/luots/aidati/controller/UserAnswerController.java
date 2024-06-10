@@ -2,6 +2,7 @@ package com.luots.AIDaTi.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.luots.AIDaTi.annotation.AuthCheck;
 import com.luots.AIDaTi.common.BaseResponse;
 import com.luots.AIDaTi.common.DeleteRequest;
@@ -14,9 +15,12 @@ import com.luots.AIDaTi.model.dto.userAnswer.UserAnswerAddRequest;
 import com.luots.AIDaTi.model.dto.userAnswer.UserAnswerEditRequest;
 import com.luots.AIDaTi.model.dto.userAnswer.UserAnswerQueryRequest;
 import com.luots.AIDaTi.model.dto.userAnswer.UserAnswerUpdateRequest;
+import com.luots.AIDaTi.model.entity.App;
 import com.luots.AIDaTi.model.entity.User;
 import com.luots.AIDaTi.model.entity.UserAnswer;
+import com.luots.AIDaTi.model.enums.ReviewStatusEnum;
 import com.luots.AIDaTi.model.vo.UserAnswerVO;
+import com.luots.AIDaTi.scoring.ScoringStrategyExecutor;
 import com.luots.AIDaTi.service.UserAnswerService;
 import com.luots.AIDaTi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +48,9 @@ public class UserAnswerController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private ScoringStrategyExecutor scoringStrategyExecutor;
+
     // region 增删改查
 
     /**
@@ -54,7 +61,7 @@ public class UserAnswerController {
      * @return
      */
     @PostMapping("/add")
-    public BaseResponse<Long> addUserAnswer(@RequestBody UserAnswerAddRequest userAnswerAddRequest, HttpServletRequest request) {
+    public BaseResponse<Long> addUserAnswer(@RequestBody UserAnswerAddRequest userAnswerAddRequest, HttpServletRequest request){
         ThrowUtils.throwIf(userAnswerAddRequest == null, ErrorCode.PARAMS_ERROR);
         // 在此处将实体类和 DTO 进行转换
         UserAnswer userAnswer = new UserAnswer();
@@ -63,6 +70,13 @@ public class UserAnswerController {
         userAnswer.setChoices(JSONUtil.toJsonStr(choices));
         // 数据校验
         userAnswerService.validUserAnswer(userAnswer, true);
+//        判断app是否存在
+        Long appId = userAnswerAddRequest.getAppId();
+        App app = Db.lambdaQuery(App.class).eq(App::getId, appId).one();
+        ThrowUtils.throwIf(app == null, ErrorCode.NOT_FOUND_ERROR);
+        if (!ReviewStatusEnum.PASS.equals(ReviewStatusEnum.getEnumByValue(app.getReviewStatus()))) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR, "该应用未通过审核");
+        }
         //填充默认值
         User loginUser = userService.getLoginUser(request);
         userAnswer.setUserId(loginUser.getId());
@@ -71,6 +85,16 @@ public class UserAnswerController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         // 返回新写入的数据 id
         long newUserAnswerId = userAnswer.getId();
+//        调用评分模块
+
+        try {
+            UserAnswer UserAnswerWithResult = scoringStrategyExecutor.doScore(choices, app);
+            UserAnswerWithResult.setId(newUserAnswerId);
+            userAnswerService.updateById(UserAnswerWithResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"评分失败");
+        }
         return ResultUtils.success(newUserAnswerId);
     }
 
