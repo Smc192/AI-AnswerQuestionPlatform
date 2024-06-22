@@ -32,9 +32,6 @@ import java.util.stream.Collectors;
 
 /**
  * 题目服务实现
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @Service
 @Slf4j
@@ -61,7 +58,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         // 创建数据时，参数不能为空
         if (add) {
             // 补充校验规则
-            ThrowUtils.throwIf(StringUtils.isBlank(questionContent), ErrorCode.PARAMS_ERROR,"题目不能为空");
+            ThrowUtils.throwIf(StringUtils.isBlank(questionContent), ErrorCode.PARAMS_ERROR, "题目不能为空");
             ThrowUtils.throwIf(appId == null || appId <= 0, ErrorCode.PARAMS_ERROR, "appId 非法");
         }
         // 修改数据时，有参数则校验

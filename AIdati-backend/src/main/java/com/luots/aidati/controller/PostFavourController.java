@@ -26,9 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 帖子收藏接口
- *
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 @RestController
 @RequestMapping("/post_favour")

@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 题目服务
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 public interface QuestionService extends IService<Question> {
 
@@ -21,7 +18,7 @@ public interface QuestionService extends IService<Question> {
      * 校验数据
      *
      * @param question
-     * @param add 对创建的数据进行校验
+     * @param add      对创建的数据进行校验
      */
     void validQuestion(Question question, boolean add);
 
@@ -32,7 +29,7 @@ public interface QuestionService extends IService<Question> {
      * @return
      */
     QueryWrapper<Question> getQueryWrapper(QuestionQueryRequest questionQueryRequest);
-    
+
     /**
      * 获取题目封装
      *

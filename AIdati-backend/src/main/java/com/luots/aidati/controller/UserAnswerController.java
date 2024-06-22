@@ -1,5 +1,6 @@
 package com.luots.AIDaTi.controller;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
@@ -25,6 +26,7 @@ import com.luots.AIDaTi.service.UserAnswerService;
 import com.luots.AIDaTi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -33,9 +35,6 @@ import java.util.List;
 
 /**
  * 用户答案接口
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @RestController
 @RequestMapping("/userAnswer")
@@ -61,7 +60,7 @@ public class UserAnswerController {
      * @return
      */
     @PostMapping("/add")
-    public BaseResponse<Long> addUserAnswer(@RequestBody UserAnswerAddRequest userAnswerAddRequest, HttpServletRequest request){
+    public BaseResponse<Long> addUserAnswer(@RequestBody UserAnswerAddRequest userAnswerAddRequest, HttpServletRequest request) {
         ThrowUtils.throwIf(userAnswerAddRequest == null, ErrorCode.PARAMS_ERROR);
         // 在此处将实体类和 DTO 进行转换
         UserAnswer userAnswer = new UserAnswer();
@@ -81,8 +80,12 @@ public class UserAnswerController {
         User loginUser = userService.getLoginUser(request);
         userAnswer.setUserId(loginUser.getId());
         // 写入数据库
-        boolean result = userAnswerService.save(userAnswer);
-        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        try {
+            boolean result = userAnswerService.save(userAnswer);
+            ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        } catch (DuplicateKeyException e) {
+            // ignore error
+        }
         // 返回新写入的数据 id
         long newUserAnswerId = userAnswer.getId();
 //        调用评分模块
@@ -90,10 +93,11 @@ public class UserAnswerController {
         try {
             UserAnswer UserAnswerWithResult = scoringStrategyExecutor.doScore(choices, app);
             UserAnswerWithResult.setId(newUserAnswerId);
+            UserAnswerWithResult.setAppId(null);
             userAnswerService.updateById(UserAnswerWithResult);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"评分失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "评分失败");
         }
         return ResultUtils.success(newUserAnswerId);
     }
@@ -268,4 +272,8 @@ public class UserAnswerController {
     }
 
     // endregion
+    @GetMapping("/generate/id")
+    public BaseResponse<Long> generateUserAnswerId() {
+        return ResultUtils.success(IdUtil.getSnowflakeNextId());
+    }
 }

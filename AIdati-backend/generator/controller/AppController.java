@@ -27,9 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 应用接口
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @RestController
 @RequestMapping("/app")
@@ -166,7 +163,7 @@ public class AppController {
      */
     @PostMapping("/list/page/vo")
     public BaseResponse<Page<AppVO>> listAppVOByPage(@RequestBody AppQueryRequest appQueryRequest,
-                                                               HttpServletRequest request) {
+                                                     HttpServletRequest request) {
         long current = appQueryRequest.getCurrent();
         long size = appQueryRequest.getPageSize();
         // 限制爬虫
@@ -187,7 +184,7 @@ public class AppController {
      */
     @PostMapping("/my/list/page/vo")
     public BaseResponse<Page<AppVO>> listMyAppVOByPage(@RequestBody AppQueryRequest appQueryRequest,
-                                                                 HttpServletRequest request) {
+                                                       HttpServletRequest request) {
         ThrowUtils.throwIf(appQueryRequest == null, ErrorCode.PARAMS_ERROR);
         // 补充查询条件，只查询当前登录用户的数据
         User loginUser = userService.getLoginUser(request);

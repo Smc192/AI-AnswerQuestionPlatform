@@ -14,9 +14,6 @@ import java.util.List;
 
 /**
  * 题目视图
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @Data
 public class QuestionVO implements Serializable {
@@ -86,7 +83,7 @@ public class QuestionVO implements Serializable {
         QuestionVO questionVO = new QuestionVO();
         BeanUtils.copyProperties(question, questionVO);
         String questionContent = question.getQuestionContent();
-        if (questionContent != null){
+        if (questionContent != null) {
             questionVO.setQuestionContent(JSONUtil.toList(questionContent, QuestionContentDTO.class));
         }
         return questionVO;

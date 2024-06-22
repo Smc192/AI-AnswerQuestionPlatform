@@ -10,9 +10,6 @@ import java.util.List;
 
 /**
  * 编辑评分结果请求
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @Data
 public class ScoringResultEditRequest implements Serializable {
@@ -46,8 +43,6 @@ public class ScoringResultEditRequest implements Serializable {
      * 结果得分范围，如 80，表示 80及以上的分数命中此结果
      */
     private Integer resultScoreRange;
-
-
 
 
     private static final long serialVersionUID = 1L;

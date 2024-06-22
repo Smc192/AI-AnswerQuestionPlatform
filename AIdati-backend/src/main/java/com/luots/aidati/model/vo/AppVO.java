@@ -13,9 +13,6 @@ import java.util.List;
 
 /**
  * 应用视图
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @Data
 public class AppVO implements Serializable {
@@ -84,7 +81,6 @@ public class AppVO implements Serializable {
      * 更新时间
      */
     private Date updateTime;
-
 
 
     /**

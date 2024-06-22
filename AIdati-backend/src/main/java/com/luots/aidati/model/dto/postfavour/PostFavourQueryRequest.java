@@ -10,9 +10,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 帖子收藏查询请求
- *
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

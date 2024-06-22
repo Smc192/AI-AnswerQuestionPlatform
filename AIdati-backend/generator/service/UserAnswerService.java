@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户答案服务
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 public interface UserAnswerService extends IService<UserAnswer> {
 
@@ -21,7 +18,7 @@ public interface UserAnswerService extends IService<UserAnswer> {
      * 校验数据
      *
      * @param userAnswer
-     * @param add 对创建的数据进行校验
+     * @param add        对创建的数据进行校验
      */
     void validUserAnswer(UserAnswer userAnswer, boolean add);
 
@@ -32,7 +29,7 @@ public interface UserAnswerService extends IService<UserAnswer> {
      * @return
      */
     QueryWrapper<UserAnswer> getQueryWrapper(UserAnswerQueryRequest userAnswerQueryRequest);
-    
+
     /**
      * 获取用户答案封装
      *

@@ -6,15 +6,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luots.AIDaTi.model.entity.Post;
 
 import javax.annotation.Resource;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * 帖子收藏数据库操作测试
- *
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 @SpringBootTest
 class PostFavourMapperTest {

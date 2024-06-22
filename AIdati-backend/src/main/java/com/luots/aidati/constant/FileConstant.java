@@ -2,9 +2,6 @@ package com.luots.AIDaTi.constant;
 
 /**
  * 文件常量
- *
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 public interface FileConstant {
 
@@ -12,5 +9,5 @@ public interface FileConstant {
      * COS 访问地址
      * todo 需替换配置
      */
-    String COS_HOST = "https://luots.icu";
+    String COS_HOST = "https://aidati-1311237642.cos.ap-shanghai.myqcloud.com";
 }

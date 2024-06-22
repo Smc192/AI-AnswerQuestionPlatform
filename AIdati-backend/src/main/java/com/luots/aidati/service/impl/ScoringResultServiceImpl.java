@@ -30,9 +30,6 @@ import java.util.stream.Collectors;
 
 /**
  * 评分结果服务实现
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @Service
 @Slf4j
@@ -43,6 +40,7 @@ public class ScoringResultServiceImpl extends ServiceImpl<ScoringResultMapper, S
 
     @Resource
     private AppService appService;
+
     /**
      * 校验数据
      *
@@ -60,7 +58,7 @@ public class ScoringResultServiceImpl extends ServiceImpl<ScoringResultMapper, S
         // 创建数据时，参数不能为空
         if (add) {
             //补充校验规则
-            ThrowUtils.throwIf(StringUtils.isBlank(resultName), ErrorCode.PARAMS_ERROR,"结果名称不能为空");
+            ThrowUtils.throwIf(StringUtils.isBlank(resultName), ErrorCode.PARAMS_ERROR, "结果名称不能为空");
             ThrowUtils.throwIf(appId == null || appId <= 0, ErrorCode.PARAMS_ERROR, "appId 非法");
         }
         // 修改数据时，有参数则校验

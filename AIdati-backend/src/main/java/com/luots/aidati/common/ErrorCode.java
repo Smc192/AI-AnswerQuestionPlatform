@@ -2,9 +2,6 @@ package com.luots.AIDaTi.common;
 
 /**
  * 自定义错误码
- *
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 public enum ErrorCode {
 

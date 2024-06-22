@@ -31,9 +31,6 @@ import org.springframework.util.DigestUtils;
 
 /**
  * 用户服务实现
- *
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 @Service
 @Slf4j

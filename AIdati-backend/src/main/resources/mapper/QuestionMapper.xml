@@ -5,13 +5,13 @@
 <mapper namespace="com.luots.AIDaTi.mapper.QuestionMapper">
 
     <resultMap id="BaseResultMap" type="com.luots.AIDaTi.model.entity.Question">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="questionContent" column="questionContent" jdbcType="VARCHAR"/>
-            <result property="appId" column="appId" jdbcType="BIGINT"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="questionContent" column="questionContent" jdbcType="VARCHAR"/>
+        <result property="appId" column="appId" jdbcType="BIGINT"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">

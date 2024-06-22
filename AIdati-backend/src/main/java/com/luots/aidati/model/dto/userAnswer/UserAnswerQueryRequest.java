@@ -11,9 +11,6 @@ import java.util.List;
 
 /**
  * 查询用户答案请求
- *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -75,7 +72,6 @@ public class UserAnswerQueryRequest extends PageRequest implements Serializable 
     private Long userId;
 
 
-
     /**
      * id
      */
@@ -85,7 +81,6 @@ public class UserAnswerQueryRequest extends PageRequest implements Serializable 
      * 搜索词
      */
     private String searchText;
-
 
 
     private static final long serialVersionUID = 1L;

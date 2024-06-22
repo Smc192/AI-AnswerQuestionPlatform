@@ -8,8 +8,6 @@ import lombok.Data;
  * 通用返回类
  *
  * @param <T>
- * @author <a href="https://github.com/liluots">程序员鱼皮</a>
- * @from <a href="https://luots.icu">编程导航知识星球</a>
  */
 @Data
 public class BaseResponse<T> implements Serializable {
