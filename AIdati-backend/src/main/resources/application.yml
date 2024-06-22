@@ -76,6 +76,9 @@ server:
     session:
       cookie:
         max-age: 2592000
+        #解决跨域
+        same-site: none
+        secure: true
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
@@ -104,7 +107,6 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.luots.AIDaTi.controller
-
 #AI 配置
 ai:
   apikey: "889ac0bdf64453b85de00176555cd8f7.lnwtW7hPOSDiGQXt"
