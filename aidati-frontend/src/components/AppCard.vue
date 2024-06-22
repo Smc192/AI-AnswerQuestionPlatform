@@ -48,7 +48,7 @@ import ShareModal from "@/components/ShareModal.vue";
 interface Props {
   app: API.AppVO;
 }
-
+//属性
 const props = withDefaults(defineProps<Props>(), {
   app: () => {
     return {};
