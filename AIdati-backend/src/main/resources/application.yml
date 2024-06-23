@@ -29,7 +29,7 @@ spring:
   redis:
     database: 1
 #    host: localhost
-    host: ehepdvqp.redis.jpz1lqiu.l9g8gc3b.com
+    host: https://redis-svc-112237-4-1327462636.sh.run.tcloudbase.com
     port: 6379
     timeout: 5000
 #    password: 123456
