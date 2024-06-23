@@ -72,7 +72,8 @@ spring:
                 sharding-column: appId
                 sharding-algorithm-name: answer-table-inline
 server:
-  address: 0.0.0.0
+#  address: 0.0.0.0
+  address: 10.48.100.203
   port: 8101
   servlet:
     context-path: /api
