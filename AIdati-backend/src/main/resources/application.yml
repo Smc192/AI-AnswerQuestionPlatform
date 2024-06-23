@@ -20,7 +20,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/ai_dati
-    url: jdbc:mysql://10.48.100.203:3306/ai_dati
+    url: jdbc:mysql://sh-cynosdbmysql-grp-8dowjbww.sql.tencentcdb.com:22261/ai_dati
     username: root
 #    password: 675629747
     password: J5k2pwRX
@@ -48,7 +48,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
 #        jdbc-url: jdbc:mysql://localhost:3306/ai_dati
-        jdbc-url: jdbc:mysql://10.48.100.203:3306/ai_dati
+        jdbc-url: jdbc:mysql://sh-cynosdbmysql-grp-8dowjbww.sql.tencentcdb.com:22261/ai_dati
         username: root
 #        password: 675629747
         password: J5k2pwRX
@@ -72,8 +72,8 @@ spring:
                 sharding-column: appId
                 sharding-algorithm-name: answer-table-inline
 server:
-#  address: 0.0.0.0
-  address: 10.48.100.203
+  address: 0.0.0.0
+#  address: 10.48.0.105
   port: 8101
   servlet:
     context-path: /api
