@@ -433,12 +433,12 @@ public class QuestionController {
                     if (c == '}') {
                         counter.addAndGet(-1);
                         if (counter.get() == 0) {
-                            // 输出当前线程的名称
-                            System.out.println(Thread.currentThread().getName());
-                            // 模拟普通用户阻塞
-                            if (!isVip) {
-                                Thread.sleep(10000L);
-                            }
+//                            // 输出当前线程的名称
+//                            System.out.println(Thread.currentThread().getName());
+//                            // 模拟普通用户阻塞
+//                            if (!isVip) {
+//                                Thread.sleep(10000L);
+//                            }
                             // 可以拼接题目，并且通过 SSE 返回给前端
                             sseEmitter.send(JSONUtil.toJsonStr(stringBuilder.toString()));
                             // 重置，准备拼接下一道题
