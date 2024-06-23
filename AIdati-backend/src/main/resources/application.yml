@@ -32,8 +32,8 @@ spring:
     host: ehepdvqp.redis.jpz1lqiu.l9g8gc3b.com
     port: 6379
     timeout: 5000
-#    password: 123456
-    password: forest squirrel
+    password: 123456
+#    password: forest squirrel
 
   # 文件上传
   servlet:
