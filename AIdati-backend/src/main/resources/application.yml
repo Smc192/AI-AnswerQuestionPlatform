@@ -99,8 +99,8 @@ mybatis-plus:
 # todo 需替换配置
 cos:
   client:
-    accessKey: AKIDGYwTAlSC8CMYXRQPrFiHj8Rdh4Qkv8DB
-    secretKey: zqiVBjAUgjbM0Up15zkMpANRNAnOuRzj
+    accessKey: xxxx
+    secretKey: xxxx
     region: ap-shanghai
     bucket: aidati-1311237642
 # 接口文档配置
@@ -116,4 +116,4 @@ knife4j:
           - com.luots.AIDaTi.controller
 #AI 配置
 ai:
-  apikey: "889ac0bdf64453b85de00176555cd8f7.lnwtW7hPOSDiGQXt"
+  apikey: "xxxx"
