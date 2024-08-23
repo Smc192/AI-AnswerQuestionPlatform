@@ -21,9 +21,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/ai_dati
     url: jdbc:mysql://sh-cynosdbmysql-grp-8dowjbww.sql.tencentcdb.com:22261/ai_dati
-    username: xxxx
+    username: xxxxx
 #    password: 675629747
-    password: xxxx
+    password: xxxxx
   # Redis 配置
   # todo 需替换配置，然后取消注释
   redis:
